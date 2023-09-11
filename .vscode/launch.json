@@ -1,0 +1,163 @@
+/*
+ * Filename: /data1/huangjiamian/src/ai_model_deploy_cpp/.vscode/launch.json
+ * Path: /data1/huangjiamian/src/ai_model_deploy_cpp/.vscode
+ * Created Date: Friday, January 15th 2021, 4:34:55 pm
+ * Author: Huang Jiamian
+ * 
+ * Copyright (c) 2021 JoYY Inc.
+ */
+
+
+
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "g++ - 生成和调试活动文件",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline/RFR-Inpainting/script_model/v1/0111_170320/g_12_256pix.zip",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/images",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/masks",
+                "11",
+                "./script_result/v1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++ build active file",
+            "postDebugTask": "delete output file",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "cmake debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Test_Inpainting",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build",
+            "postDebugTask": "delete build file",
+            "environment":[
+                {"name": "CUDA_VISIBLE_DEVICES","value": "0"}
+            ],
+            "externalConsole": false,
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text":"-enable-pretty-printing",
+                        "ignoreFailures": true,
+                    }
+                ]
+            }
+        },
+        {
+            "name": "cmake debug multi lib",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Test_Inpainting",
+            "args": [
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline/RFR-Inpainting/script_model/v1/0111_170320/g_12_256pix.zip",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/images",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/masks",
+                "11",
+                "./script_result/v1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "build",
+            "postDebugTask": "delete build file",
+            "environment":[
+                {"name": "CUDA_VISIBLE_DEVICES","value": "0"}
+            ],
+            "externalConsole": false,
+            "linux": {
+                "MIMode": "gdb",
+                
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text":"-enable-pretty-printing",
+                        "ignoreFailures": true,
+                    }
+                ]
+            }
+        },
+        {
+            "name": "cmake debug multi lib only run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Test_Inpainting",
+            "args": [
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline/RFR-Inpainting/script_model/v1/0111_170320/g_12_256pix.zip",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/images",
+                "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/masks",
+                "11",
+                "./script_result/v1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin",
+            // "preLaunchTask": "build",
+            "postDebugTask": "delete build file",
+            "environment":[
+                {"name": "CUDA_VISIBLE_DEVICES","value": "0"}
+            ],
+            "externalConsole": false,
+            "linux": {
+                "MIMode": "gdb",
+                
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text":"-enable-pretty-printing",
+                        "ignoreFailures": true,
+                    }
+                ]
+            }
+        },
+        {
+            "name": "cmake build multi lib",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "",
+            "args": [
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "build",
+            "postDebugTask": "delete build file",
+            "environment":[
+                {"name": "CUDA_VISIBLE_DEVICES","value": "0"}
+            ],
+            "externalConsole": false,
+            "linux": {
+                "MIMode": "gdb",
+                
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text":"-enable-pretty-printing",
+                        "ignoreFailures": true,
+                    }
+                ]
+            }
+        },
+    ]
+}

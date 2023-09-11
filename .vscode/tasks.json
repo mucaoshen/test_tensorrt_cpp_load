@@ -1,0 +1,253 @@
+/*
+ * Filename: /data1/huangjiamian/src/ai_model_deploy_cpp/.vscode/tasks.json
+ * Path: /data1/huangjiamian/src/ai_model_deploy_cpp/.vscode
+ * Created Date: Friday, January 15th 2021, 4:32:19 pm
+ * Author: Huang Jiamian
+ * 
+ * Copyright (c) 2021 JoYY Inc.
+ */
+
+
+
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++ build active file",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-std=c++14",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}",
+				"-I/usr/local/include",
+				"-I/usr/local/include/opencv",
+				"-I/usr/local/include/opencv2",
+				"-I/data/huangjiamian/src/ai_model_deploy_cpp/libtorch/include",
+				"-I/data/huangjiamian/src/ai_model_deploy_cpp/include",
+				"-I/data/huangjiamian/src/ai_model_deploy_cpp/include/common",
+				"-L/usr/local/lib",
+				"-L/data1/huangjiamian/src/ai_model_deploy_cpp/libtorch/lib",
+                "-l", "opencv_calib3d",
+                "-l", "opencv_core",
+                "-l", "opencv_dnn",
+                "-l", "opencv_features2d",
+                "-l", "opencv_flann",
+                "-l", "opencv_highgui",                
+                "-l", "opencv_imgcodecs",
+                "-l", "opencv_imgproc",
+                "-l", "opencv_ml",
+                "-l", "opencv_objdetect",
+                "-l", "opencv_photo",
+                "-l", "opencv_shape",
+                "-l", "opencv_stitching",
+                "-l", "opencv_superres",
+                "-l", "opencv_videoio",
+                "-l", "opencv_video",
+				"-l", "opencv_videostab",
+				"-l", "c10",
+				"-l", "c10_cuda",
+				"-l", "torch",
+				"-l", "torch_cuda",
+				"-l", "torch_cpu",
+				"-l", "torch_python",
+				"-l", "tor",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+				"-l", "",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "shell",
+			"label": "cmake cpp build",
+			"command": "mkdir",
+			"args": [
+				"-p",
+				"build"
+			],
+			//windows platform
+			"windows":{
+				"options": {
+					"shell": {
+						"executable": "powershell.ext"
+					}
+				},
+				"args":[
+					"-Force",
+					"build"
+				]
+			}
+		},
+		{
+			"label": "cmake",
+			"type":"shell",
+			"command":"cmake",
+			"args":[
+				"-DCMAKE_BUILD_TYPE=${input:CMAKE_BUILD_TYPE}",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"../",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"windows": {
+                "args": [
+                    "-DCMAKE_BUILD_TYPE=${input:CMAKE_BUILD_TYPE}",
+                    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                    "../",
+                    "-G",
+                    "\"CodeBlocks - NMake Makefiles\""
+                ],
+                "options": {
+                    "shell": {
+                        // "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\VC\\vcvarsall.bat",
+                        // 需要根据安装的vs版本调用vs工具命令提示符
+                        "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+                        "args": [
+                            "${input:PLATFORM}", //指定平台
+                            "-vcvars_ver=${input:vcvars_ver}", //指定vc环境版本
+                            "&&"
+                        ]
+                    }
+				},
+			},
+			"dependsOn":[
+				"cmake cpp build"
+			]
+		},
+		{
+			"label": "build",
+			"group": "build",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"./",
+				"--target",
+				"all",
+				"--",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build",
+			},
+			"problemMatcher":"$gcc",
+			"windows": {
+                "options": {
+                    "shell": {
+                        // "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\VC\\vcvarsall.bat",
+                        "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+                        "args": [
+                            "${input:PLATFORM}",
+                            "-vcvars_ver=${input:vcvars_ver}",
+                            "&&"
+                        ]
+                    }
+                },
+                "problemMatcher": "$msCompile"
+			},
+			"dependsOn":[
+				"cmake"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "delete build file",
+			"command": "rm",
+			"args": [
+				"-rf",
+				"${workspaceFolder}/build"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"reveal": "silent",
+			}
+		},
+		{
+			"type": "shell",
+			"label": "delete output file",
+			"command": "rm",
+			"args": [
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"presentation": {
+				"reveal": "silent",
+				"panel":"new",
+				"focus": false,
+				"showReuseMessage": false,
+				"clear": false,
+			}
+		}
+	],
+	"inputs": [
+		{
+			"id": "CMAKE_BUILD_TYPE",
+			"type": "pickString",
+			"description": "What CMAKE_BUILD_TYPE do you want to creat?",
+			"options": [
+				"Debug",
+                "Release",
+                "RelWithDebInfo",
+                "MinSizeRel",
+			],
+			"default": "Debug"
+		},
+		{
+			"id": "PLATFORM",
+            "type": "pickString",
+            "description": "What PLATFORM do you want to create?",
+            "options": [
+                "x86",
+                "amd64",
+                "arm",
+                "x86_arm",
+                "x86_amd64",
+                "amd64_x86",
+                "amd64_arm",
+            ],
+            "default": "amd64"
+		},
+		{
+            "id": "vcvars_ver",
+            "type": "pickString",
+            "description": "What vcvars_ver do you want to create?",
+            "options": [
+                "14.2", // 2019
+                "14.1", // 2017
+                "14.0", // 2015
+            ],
+            "default": "14.2"
+        }
+	]
+}

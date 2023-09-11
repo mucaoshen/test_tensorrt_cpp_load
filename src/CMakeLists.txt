@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+# project(LibInpainting VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+message(STATUS "common component generate")
+include_directories(${PROJECT_SOURCE_DIR}/include)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+add_library(test SHARED 
+            ./test.cpp)
+
+target_link_libraries(test ${CUDA_LIBRARIES} ${TRT_LIBS})
+SET_TARGET_PROPERTIES(test PROPERTIES VERSION 1.0.0 SOVERSION 1)
+set_property(TARGET test PROPERTY CXX_STANDARD 14)
+set_target_properties(test PROPERTIES CLEAN_DIRECT_OUTPUT 1)

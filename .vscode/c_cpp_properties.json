@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                // "${workspaceFolder}/**",
+                "${workspaceFolder}/include/**",
+                "/usr/local/include",
+                "/usr/local/include/**",
+                "/usr/local/libtorch/include/**",
+                "/usr/local/cuda-11.7/include",
+                "/usr/local/apr/include/apr-1",
+                "/usr/local/log4cxx/include",
+                "/usr/include/libxml2/**",
+                "/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/include/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

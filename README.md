@@ -15,6 +15,9 @@ onnxsim                   0.4.33
 tensorrt                  8.6.1
 tensorrt-dispatch         8.6.1
 tensorrt-lean             8.6.1
+torch                     1.13.1+cu117
+torchaudio                0.13.1+cu117
+torchvision               0.14.1+cu117
 ```
 
 ## Installation

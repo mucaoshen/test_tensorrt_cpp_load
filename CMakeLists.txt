@@ -14,23 +14,6 @@ include_directories("${CUDA_TOOLKIT_ROOT_DIR}/include")
 link_directories(${cudalibpath})
 find_package(CUDA)
 
-# # Torch
-# set(Torch_DIR "/usr/local/libtorch/share/cmake/Torch")
-# find_package(Torch REQUIRED)
-# message(STATUS "Torch library status:")
-# # message(STATUS "    version: ${OpenCV_VERSION}")
-# message(STATUS "    libraries: ${TORCH_LIBRARIES} ${TORCH_LIBRARY}" )
-# message(STATUS "    include path: ${TORCH_INCLUDE_DIRS}")
-# include_directories(${TORCH_INCLUDE_DIRS})
-
-# # TorchVison
-# find_package(TorchVision REQUIRED)
-# message(STATUS "TorchVision library status:")
-# # message(STATUS "    version: ${OpenCV_VERSION}")
-# message(STATUS "    libraries: ${TorchVision_LIBRARY}" )
-# message(STATUS "    include path: ${TorchVision_INCLUDE_DIR}")
-# include_directories(${TorchVision_INCLUDE_DIR})
-
 # TRT
 include_directories(/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/include)
 set(TRT_LIB_PATH "/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib")
@@ -54,7 +37,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 add_subdirectory(src)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
-add_executable(Test_Inpainting main.cpp)
-target_link_libraries(Test_Inpainting ${CUDA_LIBRARIES} ${TRT_LIBS} test)
-set_property(TARGET Test_Inpainting PROPERTY CXX_STANDARD 14)
+add_executable(main main.cpp)
+target_link_libraries(main ${CUDA_LIBRARIES} ${TRT_LIBS} test)
+set_property(TARGET main PROPERTY CXX_STANDARD 14)
 

@@ -72,7 +72,7 @@
             "name": "cmake debug multi lib",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Test_Inpainting",
+            "program": "${workspaceFolder}/bin/main",
             "args": [
                 "/data1/huangjiamian/src/watermark_inpaint_for_shopline/RFR-Inpainting/script_model/v1/0111_170320/g_12_256pix.zip",
                 "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/images",
@@ -104,7 +104,7 @@
             "name": "cmake debug multi lib only run",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Test_Inpainting",
+            "program": "${workspaceFolder}/bin/main",
             "args": [
                 "/data1/huangjiamian/src/watermark_inpaint_for_shopline/RFR-Inpainting/script_model/v1/0111_170320/g_12_256pix.zip",
                 "/data1/huangjiamian/src/watermark_inpaint_for_shopline-master/P1-20200902/images",

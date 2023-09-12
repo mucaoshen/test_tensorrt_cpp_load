@@ -24,7 +24,11 @@ torchvision               0.14.1+cu117
 According to the [TensorRT Installation Guide](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-tar) to install
 
 ## In Python
-The code to serialize mode and deserialize model
+The code to serialize mode and deserialize model. Finally the serialized model is generated in python code if you run like this:
+```bash
+$python demo_trt.py
+```
+you can see the serialized model file `ResNet34_trackerOCR_36_450_20230627_half.engine`.
 
 ## In C++
 I tried to deserialize in C++, but get some error:

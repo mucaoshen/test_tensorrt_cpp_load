@@ -38,10 +38,23 @@ Failed loading engine!
 
 ## Reproduce in C++
 ```bash
+$ cp CMakeLists.txt_class CMakeLists.txt
 $ mkdir build
 $ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCUDA_TOOLKIT_ROOT_DIR=/path/to/your/cuda-11.7 -DTRT_ROOT_DIR=/path/to/your/TensorRT/dir/targets/x86_64-linux-gnu ..
 $ make
 $ cd ../bin
-$ ./main
+$ ./main_class
 ```
+
+## write in a function && reproduce in C++
+```bash
+$ cp CMakeLists.txt_func CMakeLists.txt
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCUDA_TOOLKIT_ROOT_DIR=/path/to/your/cuda-11.7 -DTRT_ROOT_DIR=/path/to/your/TensorRT/dir/targets/x86_64-linux-gnu ..
+$ make
+$ cd ../bin
+$ ./main_func
+```
+This operation is successed in deserialize model.

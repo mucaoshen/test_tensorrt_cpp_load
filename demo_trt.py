@@ -77,9 +77,9 @@ def export_engine_reg(ori_path, workspace=1, verbose=False):
         config.set_flag(trt.BuilderFlag.FP16)
     
     with builder.build_engine(network, config) as engine, open(f, 'wb') as t:
-        meta = json.dumps(metadata)
-        t.write(len(meta).to_bytes(4, 'little', signed=True))
-        t.write(meta.encode())
+        # meta = json.dumps(metadata)
+        # t.write(len(meta).to_bytes(4, 'little', signed=True))
+        # t.write(meta.encode())
         t.write(engine.serialize())
     return f, None
 
@@ -89,8 +89,8 @@ def get_engine(engine_path):
     logger = trt.Logger(trt.Logger.INFO)
 
     with open(engine_path, 'rb') as f, trt.Runtime(logger) as runtime:
-        meta_len = int.from_bytes(f.read(4), byteorder='little')
-        metadata = json.loads(f.read(meta_len).decode('utf-8'))
+        # meta_len = int.from_bytes(f.read(4), byteorder='little')
+        # metadata = json.loads(f.read(meta_len).decode('utf-8'))
         model = runtime.deserialize_cuda_engine(f.read())
 
     context = model.create_execution_context()

@@ -48,22 +48,22 @@ int A::modelLoad(const std::string& m_modelPath) {
 	engineFile.seekg(0, engineFile.end);
 	fsize = engineFile.tellg();
 	engineFile.seekg(0, engineFile.beg);
-	// get meta info
-	char* metaLenBytes;
-	metaLenBytes = (char*)malloc(4);
-	engineFile.read(metaLenBytes, 4);
-	int metaLen = bytesToInteger(metaLenBytes);
-	if (metaLenBytes != nullptr) free(metaLenBytes);
-	// TODO: get meta json str
-	engineFile.seekg(4, engineFile.beg);
-	char* metaBytes;
-	metaBytes = (char*)malloc(metaLen);
-	engineFile.read(metaBytes, metaLen);
-	if (metaBytes != nullptr) free(metaBytes);
+	// // get meta info
+	// char* metaLenBytes;
+	// metaLenBytes = (char*)malloc(4);
+	// engineFile.read(metaLenBytes, 4);
+	// int metaLen = bytesToInteger(metaLenBytes);
+	// if (metaLenBytes != nullptr) free(metaLenBytes);
+	// // TODO: get meta json str
+	// engineFile.seekg(4, engineFile.beg);
+	// char* metaBytes;
+	// metaBytes = (char*)malloc(metaLen);
+	// engineFile.read(metaBytes, metaLen);
+	// if (metaBytes != nullptr) free(metaBytes);
 	// get model info
-	std::vector<char> engineStr(fsize - metaLen - 4);
-	engineFile.seekg(metaLen + 4, engineFile.beg);
-	engineFile.read(engineStr.data(), fsize - metaLen - 4);
+	std::vector<char> engineStr(fsize);
+	// engineFile.seekg(metaLen + 4, engineFile.beg);
+	engineFile.read(engineStr.data(), engineStr.size());
 
 	if (engineStr.size() == 0) {
 		std::cout<<"Failed getting serialized engine!"<<std::endl;

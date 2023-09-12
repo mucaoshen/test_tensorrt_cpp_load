@@ -8,15 +8,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # set(CMAKE_BUILD_TYPE DEBUG_POSTFIX)
 # cuda
-set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda-11.7)
+set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda-11.7" CACHE STRING "select cuda dir path")
 set(cudalibpath ${CUDA_TOOLKIT_ROOT_DIR}/lib64)
 include_directories("${CUDA_TOOLKIT_ROOT_DIR}/include")
 link_directories(${cudalibpath})
 find_package(CUDA)
 
 # TRT
-include_directories(/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/include)
-set(TRT_LIB_PATH "/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib")
+set(TRT_ROOT_DIR "/data1/huangjiamian/envs/TensorRT-8.6.1.6/targets/x86_64-linux-gnu" CACHE STRING "select tensorrt dir path")
+include_directories(${TRT_ROOT_DIR}/include)
+set(TRT_LIB_PATH "${TRT_ROOT_DIR}/lib")
 file(GLOB TRT_LIBS_TOP "${TRT_LIB_PATH}/*.so")
 file(GLOB_RECURSE TRT_LIBS_SUB "${TRT_LIB_PATH}/stubs/*.so")
 set(TRT_LIBS 
@@ -37,7 +38,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 add_subdirectory(src)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
-add_executable(main main.cpp)
-target_link_libraries(main ${CUDA_LIBRARIES} ${TRT_LIBS} test)
-set_property(TARGET main PROPERTY CXX_STANDARD 14)
+add_executable(main_class main.cpp)
+target_link_libraries(main_class ${CUDA_LIBRARIES} ${TRT_LIBS} test)
+set_property(TARGET main_class PROPERTY CXX_STANDARD 14)
 

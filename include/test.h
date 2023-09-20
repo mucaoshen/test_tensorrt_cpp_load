@@ -44,6 +44,6 @@ class A: public B {
 	nvinfer1::ICudaEngine* m_engine;
 };
 
-int bytesToInteger(char* buffer) {
+inline int bytesToInteger(char* buffer) {
 	return *reinterpret_cast<int*>(buffer);
 }
